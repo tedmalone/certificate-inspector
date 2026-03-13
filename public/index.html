@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔐 Certificate Inspector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-icon">🔐</span>
+        <div>
+          <h1>Certificate Inspector</h1>
+          <p class="header-subtitle">Inspect X.509 certificate fields, validity, and warnings</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="selector-section">
+      <div class="selector-label">Sample Certificates</div>
+      <div class="selector-group" id="cert-selector"></div>
+    </section>
+
+    <section class="detail-section" id="cert-detail">
+      <div class="loading-state" id="loading-state">
+        <div class="spinner"></div>
+        <span>Loading certificate...</span>
+      </div>
+
+      <div class="detail-content" id="detail-content" style="display:none; opacity:0;">
+        <div class="status-bar" id="status-bar">
+          <div class="status-left">
+            <span class="status-badge" id="status-badge"></span>
+            <span class="status-label" id="status-label"></span>
+          </div>
+          <div class="expiry-info" id="expiry-info"></div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3 class="card-title">Identity</h3>
+            <table class="field-table">
+              <tbody id="identity-fields"></tbody>
+            </table>
+          </div>
+
+          <div class="detail-card">
+            <h3 class="card-title">Validity</h3>
+            <table class="field-table">
+              <tbody id="validity-fields"></tbody>
+            </table>
+          </div>
+
+          <div class="detail-card">
+            <h3 class="card-title">Technical Details</h3>
+            <table class="field-table">
+              <tbody id="technical-fields"></tbody>
+            </table>
+          </div>
+
+          <div class="detail-card" id="san-card">
+            <h3 class="card-title">Subject Alternative Names</h3>
+            <ul class="san-list" id="san-list"></ul>
+          </div>
+
+          <div class="detail-card" id="bc-card">
+            <h3 class="card-title">Basic Constraints</h3>
+            <table class="field-table">
+              <tbody id="bc-fields"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="warnings-section" id="warnings-section">
+          <h3 class="section-title">Warnings</h3>
+          <div class="warnings-list" id="warnings-list"></div>
+        </div>
+
+        <details class="raw-section">
+          <summary class="raw-summary">Raw Certificate (PEM)</summary>
+          <pre class="raw-pem" id="raw-pem"></pre>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Sample certificates are locally generated for demo purposes only.</p>
+    <p>Built with Node.js · Express · node-forge</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
